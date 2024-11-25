@@ -16,4 +16,20 @@ const protect = (req, res, next) => {
   }
 };
 
+const create = (payload) => {
+  
+  // Options (optional)
+  const options = {
+    expiresIn: '1h'  // Token will expire in 1 hour
+  };
+
+  try {
+    const token = jwt.sign(payload, process.env.JWT_SECRET, options);
+    console.log('Generated JWT Token:', token);
+    next();
+  } catch (err) {
+    res.status(401).json({ message: 'Token generation error' });
+  }
+};
+
 module.exports = protect;
