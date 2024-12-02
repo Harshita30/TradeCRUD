@@ -4,11 +4,14 @@ const logger = require('../utils/logger')
 
 const getAllUsers = async (req, res) => {
   try {
-    const { page = 1, limit = 5 } = req.query;
+    const { page = 1, limit = 5, search = '' } = req.query;
     const skip = (page - 1) * limit;
-    const data = await User.find().skip(skip).limit(Number(limit));
-    const totalUsers = await User.countDocuments();
+    const query = search ? { name: {$regex: search, $options: 'i'} } : {}
+
+    const data = await User.find(query).skip(skip).limit(Number(limit));
     
+    const totalUsers = await User.countDocuments();
+
     if (data) {
       logger.info('All fetched users.');
       res.status(200).json({ message: 'All fetched users.', data, totalUsers, totalPages: Math.ceil(totalUsers / limit), currentPage: Number(page) });
@@ -18,7 +21,7 @@ const getAllUsers = async (req, res) => {
     }
   } catch (error) {
     logger.error(`Get: Error fetching users. ${error.stack}`);
-    res.status(500).json({ message: 'Get: Error fetching users' });
+    res.status(500).json({ message: 'Get: Error in fetching users' });
   }
 };
 
@@ -40,7 +43,7 @@ const createUser = async (req, res) => {
       res.status(500).send('No user added. Something went wrong.');
     }
   } catch (error) {
-    res.status(500).json({ message: 'Create: Error fetching users' });
+    res.status(500).json({ message: 'Create: Error in saving users' });
   }
 };
 
@@ -55,20 +58,20 @@ const getUserById = async (req, res) => {
       res.status(404).send('No user found with the ObjectId');
     }
   } catch (error) {
-    res.status(500).json({ message: 'Get By Id: Error in fetching users' });
+    res.status(500).json({ message: 'Get By Id: Error in fetching user by id' });
   }
 };
 
 const updateUserDetails = async (req, res) => {
   try {
-    const data = await User.findByIdAndUpdate(req.params.id, req.body, {new:true});
+    const data = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (data) {
       res.status(200).json({ message: 'User updated.', data });
     } else {
       res.status(404).send('No user found with the ObjectId to update');
     }
   } catch (error) {
-    res.status(500).json({ message: 'Update: Error fetching users' });
+    res.status(500).json({ message: 'Update: Error in updating users' });
   }
 };
 
@@ -77,19 +80,19 @@ const deleteUser = async (req, res) => {
   try {
     const data = await User.findByIdAndDelete(req.params.id);
     if (data) {
-      res.status(200).json({ message: 'User deleted.'});
+      res.status(200).json({ message: 'User deleted.' });
     } else {
       res.status(404).send('No user found with the ObjectId to detete');
     }
   } catch (error) {
-    res.status(500).json({ message: 'Delete: Error fetching users' });
+    res.status(500).json({ message: 'Delete: Error in deleting users' });
   }
 };
 
 module.exports = {
   getAllUsers,
   createUser,
-  getUserById, 
-  updateUserDetails, 
+  getUserById,
+  updateUserDetails,
   deleteUser
 };

@@ -1,0 +1,72 @@
+[{
+  "_id": {
+    "$oid": "673f1666e0fedc5379db7c22"
+  },
+  "name": "Ankit",
+  "email": "ankit@gmail.com",
+  "password": "ank",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67443d247fb15ea92c7cd00f"
+  },
+  "name": "Harshita",
+  "email": "harshita@gmail.com",
+  "password": "hars",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674453be636ef27d5bfe16ee"
+  },
+  "name": "White Clover Markets",
+  "email": "white@gmail.com",
+  "password": "white",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674453bf636ef27d5bfe16f0"
+  },
+  "name": "Greasy Burger",
+  "email": "greasyburger@gmail.com",
+  "password": "Greasy Burger",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674453c0636ef27d5bfe16f2"
+  },
+  "name": "Tasty Tee",
+  "email": "tastytee@gmail.com",
+  "password": "Tasty Tee",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674453c0636ef27d5bfe16f4"
+  },
+  "name": "Wilman Kala",
+  "email": "wilmankala@gmail.com",
+  "password": "Wilman Kala",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674453c1636ef27d5bfe16f6"
+  },
+  "name": "Wolski",
+  "email": "wolski@gmail.com",
+  "password": "Wolski",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674453c2636ef27d5bfe16f8"
+  },
+  "name": "Per Olsen",
+  "email": "perolsen@gmail.com",
+  "password": "Per Olsen",
+  "__v": 0
+}]
